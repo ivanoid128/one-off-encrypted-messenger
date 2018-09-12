@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+	<title>One Off Encrypted Messenger</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+	<!-- <script src="main.js"></script> -->
+</head>
+
+<body>
+	<div class="main_cntr">
+		<div class="content">
+			<div class="service_expl">
+				<div class="text_expl"></div>
+				<div class="copy_href_cntr">
+					<div class="chat_href_cntr">
+						<input class="chat_href" type="text" value="www.somedomen.com/index.html#QyRhu5a4M9SaGMmQp8ITFvD29Jm1" id="chat_href">
+					</div>
+					<div class="copy_href_btn_cntr">
+						<button id="copy_href_btn">Copy the URL</button>
+					</div>
+				</div>
+			</div>
+			<div id="chat" class="chat">
+				<div class="message caller_message" id="crmsg01">
+					<div class="text_cntr">Caller Message 01</div>
+				</div>
+				<div class="message callee_message" id="cemsg01">
+					<div class="text_cntr">Callee Message 01</div>
+				</div>
+				<div class="message caller_message" id="crmsg02">
+					<div class="text_cntr">Caller Message 02</div>
+				</div>
+				<div class="message callee_message" id="cemsg02">
+					<div class="text_cntr">Callee Message 02</div>
+				</div>
+				<div class="message caller_message" id="crmsg03">
+					<div class="text_cntr">Caller Message 03</div>
+				</div>
+				<div class="message callee_message" id="cemsg03">
+					<div class="text_cntr">Callee Message 03</div>
+				</div>
+				<div class="message caller_message" id="crmsg04">
+					<div class="text_cntr">Caller Message 04</div>
+				</div>
+				<div class="message callee_message" id="cemsg04">
+					<div class="text_cntr">Callee Message 04</div>
+				</div>
+				<div class="message caller_message" id="crmsg05">
+					<div class="text_cntr">Caller Message 05</div>
+				</div>
+				<div class="message callee_message" id="cemsg05">
+					<div class="text_cntr">Callee Message 05</div>
+				</div>
+
+				<!-- ((.message.caller_message#crmsg$$>.text_cntr{Caller Message $$})+(.message.callee_message#cemsg$$>.text_cntr{Callee Message $$}))*5 -->
+			</div>
+			<div class="message_input_cntr">
+				<textarea class="message_input" name="message_input" id="message_input" cols="30" rows="10"></textarea>
+				<button id="send_message_btn" class="send_message_btn" type="submit">Send</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="peertopeer.js"></script>
+	<script src="main.js"></script>
+	<script id="message_templates" type="text/template">
+		<div class="message caller_message">
+			<div class="text_cntr">#msg_text</div>
+		</div>
+		<div class="message callee_message">
+			<div class="text_cntr">#msg_text</div>
+		</div>
+	</script>
+</body>
+
+</html>

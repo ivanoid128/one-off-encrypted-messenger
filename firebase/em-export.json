@@ -1,0 +1,12 @@
+{
+	"chats": {
+		"first_chat": {
+			"answer": "4321w",
+			"handshake": "1234w"
+		},
+		"second_chat": {
+			"answer": "4321w",
+			"handshake": "1234w"
+		}
+	}
+}
