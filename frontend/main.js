@@ -53,6 +53,12 @@ function UIInit() {
 	const peer_msg_tmpl = templates.querySelector('.callee_message');
 	const msg_inp = document.getElementById('message_input')
 
+	if (callerConnection && callerConnection.localDescription)
+		const my_fingerprint = callerConnection.localDescription.sdp.match(/fingerprint\S*\s(\S*)\r/i)[1];
+
+	if (callerConnection && callerConnection.remoteDescription)
+		const counterpart_fingerprint = callerConnection.remoteDescription.sdp.match(/fingerprint\S*\s(\S*)\r/i)[1];
+
 	setOnMessage(function (data) {
 		let msgNode = peer_msg_tmpl;
 		msgNode.querySelector('.text_cntr').textContent = data;
