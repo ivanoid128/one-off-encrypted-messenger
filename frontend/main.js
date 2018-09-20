@@ -23,7 +23,11 @@ firebase.auth().onAuthStateChanged(function (user) {
 		userid = user.uid;
 		userid = getCaller_uid(userid);
 
-		WebRTCInit(database, getPeerType(), userid)
+		WebRTCInit(database, getPeerType(), userid).then(function (param) {
+			console.log(param)
+			const connection = callerConnection ? callerConnection : calleeConnection;
+			console.log(connection)
+		})
 			.then(sendHelloMsg)
 			.then(UIInit)
 
@@ -52,12 +56,20 @@ function UIInit() {
 	const my_msg_tmpl = templates.querySelector('.caller_message');
 	const peer_msg_tmpl = templates.querySelector('.callee_message');
 	const msg_inp = document.getElementById('message_input')
+	const my_fingerprint_tag = document.getElementById('my_fingerprint')
+	const counterpart_fingerprint_tag = document.getElementById('counterpart_fingerprint')
 
-	if (callerConnection && callerConnection.localDescription)
-		const my_fingerprint = callerConnection.localDescription.sdp.match(/fingerprint\S*\s(\S*)\r/i)[1];
+	const connection = callerConnection ? callerConnection : calleeConnection;
 
-	if (callerConnection && callerConnection.remoteDescription)
-		const counterpart_fingerprint = callerConnection.remoteDescription.sdp.match(/fingerprint\S*\s(\S*)\r/i)[1];
+	if (connection && connection.localDescription) {
+		const my_fingerprint = connection.localDescription.sdp.match(/fingerprint\S*\s(\S*)\r/i)[1];
+		my_fingerprint_tag.textContent = my_fingerprint.split(':').join(' ');
+	}
+
+	if (connection && connection.remoteDescription) {
+		const counterpart_fingerprint = connection.remoteDescription.sdp.match(/fingerprint\S*\s(\S*)\r/i)[1];
+		counterpart_fingerprint_tag.textContent = counterpart_fingerprint.split(':').join(' ');;
+	}
 
 	setOnMessage(function (data) {
 		let msgNode = peer_msg_tmpl;
